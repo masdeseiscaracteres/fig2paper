@@ -16,7 +16,7 @@ end
 struct2vars(res);
 
 % Check if "matlab2tikz" exists, if not download last version 
-if not(exist('matlab2tikz','file'))
+if exist('matlab2tikz','file')~=2
     fprintf('matlab2tikz not found, downloading it... ');
     folder=fileparts(mfilename('fullpath'));
     matlab2tikz_folder=fullfile(folder,'matlab2tikz');

@@ -21,7 +21,7 @@ fig2paper
  ```m
 fig2paper('figure_name')
 ```
-Desired width and height can be also specified:
+Desired width and height can be also specified (using LaTeX length specifiers):
  ```m
 fig2paper('figure_name','width','8 cm','height','6 cm')
 ```
