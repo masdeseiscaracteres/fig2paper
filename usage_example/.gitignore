@@ -34,6 +34,7 @@
 
 # Automatically created files
 *.pdf
+!*.tex
 
 ### Matlab ###
 ##---------------------------------------------------

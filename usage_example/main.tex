@@ -1,0 +1,40 @@
+\documentclass[twocolumn]{article}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage{standalone}
+% Versions of standalone <= 1.1b are unable to 
+% compile figures in an independent pdf file under Windows (MiKTeX distribution)
+% The latest version downloaded from bitbucket (not yet a release) 
+% https://bitbucket.org/martin_scharrer/standalone/get/tip.zip
+% provides a new "build" option as a workaround
+%  - Windows (MikTeX): [build={quote={"}}]
+%  - UNIX: [build={quote={'}}]
+% The current version automagically detects which option to include
+% Additionlly, remember to always compile with:
+% pdflatex -synctex=1 -interaction=nonstopmode -shell-escape --enable-write18 %.tex
+
+\standaloneconfig{mode=buildnew} %mode=buildnew,buildmissing,tex
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{plotmarks}
+\usepackage{amsmath}
+
+\begin{document}
+\blindtext
+\blindmathtrue
+\blindtext
+\blindmathfalse
+
+\blindtext
+
+\blindtext
+
+\begin{figure}
+\includestandalone{figure}
+\caption{Figure example}
+\end{figure}
+
+\blindmathtrue
+\blindtext
+\blindmathfalse
+\end{document}
