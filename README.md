@@ -23,6 +23,6 @@ fig2paper('figure_name')
 ```
 Desired width and height can be also specified (using LaTeX length specifiers):
  ```m
-fig2paper('figure_name','width','8 cm','height','6 cm')
+fig2paper('figure_name','width','8cm','height','6cm')
 ```
 By default, the returned figure has divine proportions with ``width`` equal to ``\textwidth``

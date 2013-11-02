@@ -4,8 +4,8 @@ tex=@(x) [x '.tex'];
 
 % Parse optional key-value pair input arguments
 p=inputParser;
-p.addOptional('width','\textwidth');
-p.addOptional('height','0.618\textwidth');
+p.addOptional('width','\columnwidth');
+p.addOptional('height','0.618\columnwidth');
 p.parse(varargin{:});
 res=p.Results;
 
