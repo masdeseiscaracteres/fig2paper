@@ -35,6 +35,7 @@
 # Automatically created files
 *.pdf
 !main.tex
+!standalone.tex
 
 ### Matlab ###
 ##---------------------------------------------------
