@@ -6,16 +6,18 @@ tex=@(x) [x '.tex'];
 p=inputParser;
 p.addOptional('width','\columnwidth');
 p.addOptional('height','0.618\columnwidth');
+p.addOptional('pdflatex_path','pdflatex');% Typically /usr/texbin/pdflatex in Mac OS X
 p.parse(varargin{:});
 res=p.Results;
 
-if not(exist('filename','var'))
+
+if not(exist('filename','var')) || isempty(filename)
     filename= ['fig-' datestr(now,30)];
 end
 
 struct2vars(res);
 
-% Check if "matlab2tikz" exists, if not download last version 
+% Check if "matlab2tikz" exists, if not download last version
 if exist('matlab2tikz','file')~=2
     fprintf('matlab2tikz not found, downloading it... ');
     folder=fileparts(mfilename('fullpath'));
@@ -32,12 +34,12 @@ matlab2tikz(tex(filename),...
     'width',width,...
     'height',height);
 
-[notfound,~] = system(sprintf('"%s" --help', 'pdflatex'));
+[notfound,~] = system(sprintf('"%s" --help',pdflatex_path));
 if notfound
-    error('Could not find "pdflatex" in system path. Please add pdflatex location to the system path.');
+    error('Could not find "pdflatex" in the provided path. Please add pdflatex location to the system path or enter path in the ''pdflatex_path'' argument.');
 end
 
-[status,result]=system(sprintf('pdflatex -quiet --job-name=%s %s',filename,tex(filename)));
+[status,result]=system(sprintf('"%s" -quiet --job-name=%s %s',pdflatex_path,filename,tex(filename)));
 if status==0
     open(sprintf('%s.pdf',filename));
     delete(sprintf('%s.log',filename),sprintf('%s.aux',filename));
