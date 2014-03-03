@@ -4,16 +4,17 @@
 \usepackage{standalone}
 % Versions of standalone <= 1.1b are unable to 
 % compile figures in an independent pdf file under Windows (MiKTeX distribution)
-% The latest version downloaded from bitbucket (not yet a release) 
+% The latest version downloaded from bitbucket (1.2 but not yet a release) 
 % https://bitbucket.org/martin_scharrer/standalone/get/tip.zip
 % provides a new "build" option as a workaround
 %  - Windows (MikTeX): [build={quote={"}}]
 %  - UNIX: [build={quote={'}}]
-% The current version automagically detects which option to include
-% Additionlly, remember to always compile with:
+% However, passing the "quote" option is not required since it automagically detects 
+% which option to include.
+% Additionally, remember to always compile with:
 % pdflatex -synctex=1 -interaction=nonstopmode -shell-escape --enable-write18 %.tex
 
-\standaloneconfig{mode=buildnew} %mode=buildnew,buildmissing,tex
+\standaloneconfig{mode=buildnew} %mode=build,buildnew,buildmissing,tex,image,image|tex
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usetikzlibrary{plotmarks}
