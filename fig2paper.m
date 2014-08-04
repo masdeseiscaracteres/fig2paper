@@ -1,5 +1,6 @@
 function fig2paper(filename,varargin)
-
+% Usage example: 
+% fig2paper('','pdflatex_path','/usr/texbin/lualatex')
 tex=@(x) [x '.tex'];
 
 % Parse optional key-value pair input arguments
@@ -21,15 +22,16 @@ struct2vars(res);
 if exist('matlab2tikz','file')~=2
     fprintf('matlab2tikz not found, downloading it... ');
     folder=fileparts(mfilename('fullpath'));
-    matlab2tikz_folder=fullfile(folder,'matlab2tikz');
-    unzip('http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz?download=true',matlab2tikz_folder)
+    matlab2tikz_folder=fullfile(folder,'');
+    unzip('https://github.com/nschloe/matlab2tikz/archive/0.4.7.zip',matlab2tikz_folder)
     addpath(genpath(matlab2tikz_folder));
     fprintf('Done!\n');
 end
 
 matlab2tikz(tex(filename),...
+    'checkForUpdates',true,...
     'standalone',true,...
-    'parseStrings',false,...
+    'parseStrings',false,... %If you are using LaTeX math, surround it with dollar signs
     'showInfo',false,...
     'width',width,...
     'height',height);
